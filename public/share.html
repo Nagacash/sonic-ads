@@ -280,6 +280,35 @@
       .share-btn:hover { color: var(--text); border-color: #404040; }
       .share-btn svg { width: 14px; height: 14px; }
       .share-btn.copied { color: var(--emerald); border-color: rgba(52,211,153,0.3); }
+
+      /* ---- lang toggle ---- */
+      .lang-toggle {
+        position: absolute;
+        top: 28px;
+        right: 28px;
+        display: inline-flex;
+        border-radius: 9999px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        overflow: hidden;
+        z-index: 1;
+      }
+      .lang-toggle button {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        padding: 4px 10px;
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        color: var(--muted);
+        transition: background 0.15s ease, color 0.15s ease;
+      }
+      .lang-toggle button:hover { color: var(--text); }
+      .lang-toggle button.active {
+        background: rgba(245,158,11,0.15);
+        color: var(--amber);
+      }
     </style>
   </head>
   <body>
@@ -291,10 +320,16 @@
         Sonic Micro-Ad
       </div>
 
+      <!-- Lang Toggle -->
+      <div class="lang-toggle">
+        <button id="langEn" class="active" data-lang="en">EN</button>
+        <button id="langDe" data-lang="de">DE</button>
+      </div>
+
       <!-- Track Info -->
       <div class="track-title">Body &amp; Mind</div>
       <div class="track-artist">Naga Codex</div>
-      <div class="track-desc">
+      <div class="track-desc" data-el="desc">
         A professional sonic micro-ad designed to capture instant attention and make your brand stick — ready for digital campaigns, social feeds, and video pre-roll.
       </div>
 
@@ -323,7 +358,7 @@
 
       <!-- Specs -->
       <div class="specs">
-        <span class="ok">
+        <span class="ok" data-el="proAudio">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Professional audio
         </span>
@@ -331,7 +366,7 @@
       </div>
 
       <!-- CTA -->
-      <a class="cta" href="https://nagacodex.cloud" target="_blank" rel="noopener">
+      <a class="cta" data-el="cta" href="https://nagacodex.cloud" target="_blank" rel="noopener">
         Create Your Own Sonic Ad →
       </a>
 
@@ -339,17 +374,17 @@
       <div class="share-row">
         <button class="share-btn" id="copyBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span id="copyLabel">Copy Link</span>
+          <span id="copyLabel" data-el="copy">Copy Link</span>
         </button>
         <button class="share-btn" id="downloadBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download
+          <span data-el="download">Download</span>
         </button>
       </div>
 
       <!-- Footer -->
-      <div class="foot">
-        Made by <a href="https://nagacodex.cloud" target="_blank" rel="noopener">nagacodex.cloud</a> · +49 176292551
+      <div class="foot" data-el="footer">
+        Made by <a href="https://nagacodex.cloud" target="_blank" rel="noopener">nagacodex.cloud</a> · +49 17629255188
       </div>
     </div>
 
@@ -458,17 +493,9 @@
         audio.currentTime = pct * audio.duration;
       });
 
-      // --- Copy Link ---
+      // --- Copy Link (i18n-aware version registered below after setLang is defined) ---
       const copyBtn   = document.getElementById('copyBtn');
       const copyLabel = document.getElementById('copyLabel');
-      copyBtn.addEventListener('click', () => {
-        const url = location.href;
-        navigator.clipboard.writeText(url).then(() => {
-          copyBtn.classList.add('copied');
-          copyLabel.textContent = 'Copied!';
-          setTimeout(() => { copyBtn.classList.remove('copied'); copyLabel.textContent = 'Copy Link'; }, 2000);
-        });
-      });
 
       // --- Download ---
       const downloadBtn = document.getElementById('downloadBtn');
@@ -480,6 +507,75 @@
         a.click();
         a.remove();
       });
+
+      // --- i18n ---
+      const i18n = {
+        en: {
+          desc: 'A professional sonic micro-ad designed to capture instant attention and make your brand stick — ready for digital campaigns, social feeds, and video pre-roll.',
+          proAudio: 'Professional audio',
+          cta: 'Create Your Own Sonic Ad →',
+          copy: 'Copy Link',
+          copied: 'Copied!',
+          download: 'Download',
+          footer: 'Made by <a href="https://nagacodex.cloud" target="_blank" rel="noopener">nagacodex.cloud</a> · +49 17629255188',
+        },
+        de: {
+          desc: 'Ein professioneller Sonic Micro-Ad, entwickelt, um sofort Aufmerksamkeit zu erregen und Ihre Marke im Gedächtnis zu verankern — bereit für digitale Kampagnen, Social Feeds und Video Pre-Roll.',
+          proAudio: 'Professioneller Audio',
+          cta: 'Eigenen Sonic Ad erstellen →',
+          copy: 'Link kopieren',
+          copied: 'Kopiert!',
+          download: 'Herunterladen',
+          footer: 'Erstellt von <a href="https://nagacodex.cloud" target="_blank" rel="noopener">nagacodex.cloud</a> · +49 17629255188',
+        },
+      };
+
+      let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('de') ? 'de' : 'en');
+
+      function setLang(lang) {
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang === 'de' ? 'de' : 'en';
+
+        // Update text elements
+        document.querySelectorAll('[data-el]').forEach(el => {
+          const key = el.getAttribute('data-el');
+          if (i18n[lang][key] != null) {
+            if (key === 'footer') {
+              el.innerHTML = i18n[lang][key];
+            } else {
+              el.textContent = i18n[lang][key];
+            }
+          }
+        });
+
+        // Update copy button default label
+        copyLabel.textContent = i18n[lang].copy;
+
+        // Toggle active button
+        document.getElementById('langEn').classList.toggle('active', lang === 'en');
+        document.getElementById('langDe').classList.toggle('active', lang === 'de');
+      }
+
+      // Copy handler: use current lang for feedback
+      copyBtn.addEventListener('click', () => {
+        const url = location.href;
+        navigator.clipboard.writeText(url).then(() => {
+          copyBtn.classList.add('copied');
+          copyLabel.textContent = i18n[currentLang].copied;
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyLabel.textContent = i18n[currentLang].copy;
+          }, 2000);
+        });
+      });
+
+      // Toggle buttons
+      document.getElementById('langEn').addEventListener('click', () => setLang('en'));
+      document.getElementById('langDe').addEventListener('click', () => setLang('de'));
+
+      // Init on load
+      setLang(currentLang);
     </script>
   </body>
 </html>
