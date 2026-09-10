@@ -23,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
 
     <style>
       *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -314,6 +315,11 @@
   <body>
 
     <div class="card">
+      <!-- Logo -->
+      <div style="text-align:center; margin-bottom: 20px;">
+        <img src="assets/logo.png" alt="Naga Codex" style="height: 40px; width: auto; opacity: 0.9;" />
+      </div>
+
       <!-- Badge -->
       <div class="badge">
         <span class="dot"></span>
@@ -576,6 +582,12 @@
 
       // Init on load
       setLang(currentLang);
+
+      // Autoplay once on page load (browsers may block without user interaction)
+      const autoplayPromise = audio.play();
+      if (autoplayPromise !== undefined) {
+        autoplayPromise.catch(() => {});
+      }
     </script>
   </body>
 </html>
