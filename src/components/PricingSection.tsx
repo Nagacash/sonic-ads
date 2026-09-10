@@ -66,6 +66,7 @@ const plans: PlanItem[] = [
       "Ad-ready files: MP4 + WAV + MP3 + deployment guide",
       "Professional mixing & mastering included",
       "2 revision rounds included",
+      "Free simple landing page for CTA included if needed",
     ],
   },
   {
@@ -87,6 +88,7 @@ const plans: PlanItem[] = [
       "Ad-ready files: MP4 + WAV + MP3 + deployment guide",
       "Professional mixing & mastering included",
       "3 revision rounds included",
+      "Free simple landing page for CTA included if needed",
     ],
   },
 ];
@@ -253,7 +255,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectTier, on
             Commercial usage rights for the final approved files are included. Source files, unused concepts, paid media, and third-party licenses are not included unless agreed separately.
           </p>
           <p className="text-xs text-neutral-400">
-            Ad spend, media buying, filming, paid voice talent, and advanced landing pages are available separately.
+            Ad spend, media buying, filming, and advanced landing pages are available separately.
+          </p>
+          <p className="text-xs text-amber-400/80 font-semibold">
+            Want a real singer instead of AI voice? Add €500 to any package.
           </p>
           <p className="text-[11px] text-neutral-500 pt-1 border-t border-neutral-800/60">
             We create the ad creative for YouTube, Instagram, TikTok, websites, and other digital placements. We do not modify Google search results or guarantee placement on search engines.

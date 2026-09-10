@@ -96,11 +96,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenBooking, onOpenFreeConcept
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                <span className="text-neutral-300 font-mono">+49 (0) 40 822 19 40 · +41 44 500 28 90</span>
+                <span className="text-neutral-300 font-mono">+49 176292551</span>
               </li>
               <li className="flex items-center gap-2">
                 <Globe className="h-3.5 w-3.5 text-amber-400 shrink-0" />
-                <span className="text-neutral-300 font-mono">nagacodex.com</span>
+                <span className="text-neutral-300 font-mono">nagacodex.cloud</span>
               </li>
               <li className="text-[11px] text-neutral-500 pt-1">
                 Hamburg, Germany · Zurich, Switzerland

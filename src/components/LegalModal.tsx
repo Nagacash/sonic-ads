@@ -79,9 +79,8 @@ export const LegalModal: React.FC<LegalModalProps> = ({
                     sonic13.CH@gmail.com
                   </a>
                   <br />
-                  Phone (DE): +49 (0) 40 822 19 40<br />
-                  Phone (CH): +41 44 500 28 90<br />
-                  Web: nagacodex.com
+                  Phone: +49 176292551<br />
+                  Web: nagacodex.cloud
                 </p>
               </div>
 

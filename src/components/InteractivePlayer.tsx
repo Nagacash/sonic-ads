@@ -21,7 +21,8 @@ import {
   ArrowRight,
   ShieldCheck,
   FileAudio,
-  Film
+  Film,
+  Link
 } from "lucide-react";
 
 interface InteractivePlayerProps {
@@ -47,6 +48,7 @@ export const InteractivePlayer: React.FC<InteractivePlayerProps> = ({
   const [activeLineIndex, setActiveLineIndex] = useState<number>(0);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [hasCompletedPlayback, setHasCompletedPlayback] = useState<boolean>(false);
+  const [linkCopied, setLinkCopied] = useState<boolean>(false);
 const [audioBars, setAudioBars] = useState<number[]>([15, 25, 40, 60, 35, 20, 45, 75, 50, 30, 65, 80]);
 
 const microAdAudioRef = useRef<HTMLAudioElement | null>(null);
@@ -60,6 +62,14 @@ const toggleMute = () => {
       audioSynth.setMuted(nextMute);
       if (microAdAudioRef.current) microAdAudioRef.current.muted = nextMute;
     };
+
+  const handleCopyLink = () => {
+    const mp3Url = `${window.location.origin}/assets/body%20and%20mind%20single%20mix.mp3`;
+    navigator.clipboard.writeText(mp3Url).then(() => {
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000);
+    });
+  };
 
   // Equalizer animation loop when playing
   useEffect(() => {
@@ -610,6 +620,20 @@ setIsPlaying(true);
               >
                 {isMuted ? <VolumeX className="h-4 w-4 text-rose-400" /> : <Volume2 className="h-4 w-4 text-amber-400" />}
                 <span>{isMuted ? "Muted" : "Sound On"}</span>
+              </button>
+
+              {/* Copy Link */}
+              <button
+                onClick={handleCopyLink}
+                className={`flex items-center gap-1.5 rounded-xl border px-3.5 py-3 text-xs sm:text-sm font-semibold transition ${
+                  linkCopied
+                    ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
+                    : "border-neutral-800 bg-neutral-900 text-neutral-300 hover:text-white"
+                }`}
+                title="Copy MP3 link to clipboard"
+              >
+                <Link className="h-4 w-4" />
+                <span>{linkCopied ? "Copied!" : "Copy Link"}</span>
               </button>
 
               {/* Use this format for my brand */}
