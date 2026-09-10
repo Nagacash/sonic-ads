@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Body &amp; Mind — Sonic Micro-Ad | Naga Codex</title>
+    <meta name="description" content="Listen to Body &amp; Mind by Naga Codex — a professional sonic micro-ad built to capture instant attention and make your brand stick." />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Body &amp; Mind — Sonic Micro-Ad | Naga Codex" />
+    <meta property="og:description" content="A professional sonic micro-ad built to capture instant attention and make your brand stick in 6 seconds." />
+    <meta property="og:type" content="music.song" />
+    <meta property="og:url" content="https://nagacodex.cloud/share.html" />
+    <meta property="og:audio" content="https://sonic-ads.vercel.app/assets/body%20and%20mind%20single%20mix.mp3" />
+    <meta property="og:audio:title" content="Body &amp; Mind" />
+    <meta property="og:audio:artist" content="Naga Codex" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Body &amp; Mind — Sonic Micro-Ad | Naga Codex" />
+    <meta name="twitter:description" content="A professional sonic micro-ad built to capture instant attention and make your brand stick in 6 seconds." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --bg:       #0a0a0a;
+        --surface:  #141414;
+        --border:   #262626;
+        --muted:    #737373;
+        --text:     #f5f5f5;
+        --amber:    #f59e0b;
+        --amber-dk: #d97706;
+        --amber-lt: #fbbf24;
+        --emerald:  #34d399;
+      }
+
+      html { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+      .font-display { font-family: 'Syne', 'Plus Jakarta Sans', system-ui, sans-serif; }
+
+      body {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(245,158,11,0.06) 0%, transparent 60%), var(--bg);
+      }
+
+      /* ---- card ---- */
+      .card {
+        width: 100%;
+        max-width: 440px;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 32px 28px 28px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 25px 60px -15px rgba(0,0,0,0.8), 0 0 80px -20px rgba(245,158,11,0.08);
+      }
+      .card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(245,158,11,0.04) 0%, transparent 40%);
+        pointer-events: none;
+      }
+
+      /* ---- badge ---- */
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--amber);
+        background: rgba(245,158,11,0.1);
+        border: 1px solid rgba(245,158,11,0.2);
+        border-radius: 9999px;
+        padding: 5px 12px;
+        margin-bottom: 20px;
+      }
+      .badge .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--amber);
+        animation: pulse-dot 2s ease-in-out infinite;
+      }
+      @keyframes pulse-dot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.8); }
+      }
+
+      /* ---- track info ---- */
+      .track-title {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 28px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: #fff;
+      }
+      .track-artist {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .track-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #a3a3a3;
+        margin-top: 12px;
+        max-width: 360px;
+      }
+
+      /* ---- player ---- */
+      .player {
+        margin-top: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* equalizer */
+      .eq {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 3px;
+        height: 48px;
+        padding: 0 4px;
+      }
+      .eq-bar {
+        width: 4px;
+        border-radius: 2px;
+        background: var(--border);
+        transition: height 0.18s ease;
+      }
+      .eq-bar.active {
+        background: linear-gradient(to top, var(--amber-dk), var(--amber-lt));
+      }
+      .eq-bar.accent {
+        background: linear-gradient(to top, var(--amber), var(--amber-lt));
+      }
+
+      /* controls row */
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .play-btn {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, var(--amber), var(--amber-lt));
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+        box-shadow: 0 4px 20px rgba(245,158,11,0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .play-btn:hover { transform: scale(1.06); box-shadow: 0 6px 28px rgba(245,158,11,0.45); }
+      .play-btn:active { transform: scale(0.96); }
+      .play-btn svg { width: 22px; height: 22px; fill: currentColor; }
+
+      /* scrubber */
+      .scrubber-wrap { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+      .scrubber-track {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--border);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .scrubber-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: linear-gradient(90deg, var(--amber-dk), var(--amber-lt));
+        width: 0%;
+        transition: width 0.1s linear;
+      }
+      .time-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        font-variant-numeric: tabular-nums;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .time-row .now { color: var(--amber); font-weight: 700; }
+
+      /* specs strip */
+      .specs {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--muted);
+      }
+      .specs .ok {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--emerald);
+      }
+
+      /* CTA */
+      .cta {
+        display: block;
+        margin-top: 24px;
+        width: 100%;
+        padding: 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(245,158,11,0.25);
+        background: rgba(245,158,11,0.06);
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--amber);
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .cta:hover {
+        background: rgba(245,158,11,0.12);
+        border-color: rgba(245,158,11,0.4);
+      }
+
+      /* footer */
+      .foot {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #525252;
+      }
+      .foot a { color: var(--muted); text-decoration: none; }
+      .foot a:hover { color: var(--amber); }
+
+      /* share row */
+      .share-row {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.15s ease, border-color 0.15s ease;
+      }
+      .share-btn:hover { color: var(--text); border-color: #404040; }
+      .share-btn svg { width: 14px; height: 14px; }
+      .share-btn.copied { color: var(--emerald); border-color: rgba(52,211,153,0.3); }
+    </style>
+  </head>
+  <body>
+
+    <div class="card">
+      <!-- Badge -->
+      <div class="badge">
+        <span class="dot"></span>
+        Sonic Micro-Ad
+      </div>
+
+      <!-- Track Info -->
+      <div class="track-title">Body &amp; Mind</div>
+      <div class="track-artist">Naga Codex</div>
+      <div class="track-desc">
+        A professional sonic micro-ad designed to capture instant attention and make your brand stick — ready for digital campaigns, social feeds, and video pre-roll.
+      </div>
+
+      <!-- Player -->
+      <div class="player">
+        <!-- Equalizer -->
+        <div class="eq" id="eq"></div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <button class="play-btn" id="playBtn" aria-label="Play">
+            <svg id="iconPlay" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="iconPause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>
+          </button>
+          <div class="scrubber-wrap">
+            <div class="scrubber-track" id="scrubber">
+              <div class="scrubber-fill" id="fill"></div>
+            </div>
+            <div class="time-row">
+              <span class="now" id="curTime">0:00</span>
+              <span id="durTime">0:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specs -->
+      <div class="specs">
+        <span class="ok">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Professional audio
+        </span>
+        <span>126 BPM · WAV Master</span>
+      </div>
+
+      <!-- CTA -->
+      <a class="cta" href="https://nagacodex.cloud" target="_blank" rel="noopener">
+        Create Your Own Sonic Ad →
+      </a>
+
+      <!-- Share -->
+      <div class="share-row">
+        <button class="share-btn" id="copyBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="copyLabel">Copy Link</span>
+        </button>
+        <button class="share-btn" id="downloadBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <div class="foot">
+        Made by <a href="https://nagacodex.cloud" target="_blank" rel="noopener">nagacodex.cloud</a> · +49 176292551
+      </div>
+    </div>
+
+    <script>
+      // --- Audio ---
+      const audio = new Audio('https://sonic-ads.vercel.app/assets/body%20and%20mind%20single%20mix.mp3');
+      audio.preload = 'metadata';
+
+      const playBtn  = document.getElementById('playBtn');
+      const iconPlay = document.getElementById('iconPlay');
+      const iconPause= document.getElementById('iconPause');
+      const fill     = document.getElementById('fill');
+      const curTime  = document.getElementById('curTime');
+      const durTime  = document.getElementById('durTime');
+      const scrubber = document.getElementById('scrubber');
+
+      // --- Equalizer bars ---
+      const eqEl = document.getElementById('eq');
+      const barHeights = [30,55,85,40,75,95,60,35,80,90,50,28,70,95,65,42,55,35,78,88,45,62];
+      const bars = barHeights.map((h, i) => {
+        const s = document.createElement('span');
+        s.className = 'eq-bar';
+        s.style.height = (h * 0.6) + '%';
+        s.dataset.base = h;
+        eqEl.appendChild(s);
+        return s;
+      });
+
+      let playing = false;
+      let eqRaf;
+
+      function fmt(s) {
+        if (!isFinite(s)) return '0:00';
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ':' + String(sec).padStart(2, '0');
+      }
+
+      function animateEq() {
+        if (!playing) return;
+        bars.forEach((b, i) => {
+          const base = parseFloat(b.dataset.base);
+          const h = playing
+            ? Math.min(100, Math.max(15, base * (0.6 + Math.random() * 0.8) * (i % 2 === 0 ? 1.1 : 0.85)))
+            : base * 0.6;
+          b.style.height = h + '%';
+          b.classList.toggle('active', playing);
+          b.classList.toggle('accent', playing && i % 3 === 0);
+        });
+        eqRaf = requestAnimationFrame(() => setTimeout(animateEq, 120));
+      }
+
+      function freezeEq() {
+        cancelAnimationFrame(eqRaf);
+        bars.forEach(b => {
+          const base = parseFloat(b.dataset.base);
+          b.style.height = (base * 0.6) + '%';
+          b.classList.remove('active', 'accent');
+        });
+      }
+
+      playBtn.addEventListener('click', () => {
+        if (playing) {
+          audio.pause();
+        } else {
+          audio.play().catch(() => {});
+        }
+      });
+
+      audio.addEventListener('play', () => {
+        playing = true;
+        iconPlay.style.display = 'none';
+        iconPause.style.display = '';
+        playBtn.setAttribute('aria-label', 'Pause');
+        animateEq();
+      });
+      audio.addEventListener('pause', () => {
+        playing = false;
+        iconPlay.style.display = '';
+        iconPause.style.display = 'none';
+        playBtn.setAttribute('aria-label', 'Play');
+        freezeEq();
+      });
+      audio.addEventListener('ended', () => {
+        playing = false;
+        iconPlay.style.display = '';
+        iconPause.style.display = 'none';
+        freezeEq();
+      });
+
+      audio.addEventListener('loadedmetadata', () => {
+        durTime.textContent = fmt(audio.duration);
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+        fill.style.width = pct + '%';
+        curTime.textContent = fmt(audio.currentTime);
+      });
+
+      // Scrub
+      scrubber.addEventListener('click', (e) => {
+        if (!audio.duration) return;
+        const rect = scrubber.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = pct * audio.duration;
+      });
+
+      // --- Copy Link ---
+      const copyBtn   = document.getElementById('copyBtn');
+      const copyLabel = document.getElementById('copyLabel');
+      copyBtn.addEventListener('click', () => {
+        const url = location.href;
+        navigator.clipboard.writeText(url).then(() => {
+          copyBtn.classList.add('copied');
+          copyLabel.textContent = 'Copied!';
+          setTimeout(() => { copyBtn.classList.remove('copied'); copyLabel.textContent = 'Copy Link'; }, 2000);
+        });
+      });
+
+      // --- Download ---
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.addEventListener('click', () => {
+        const a = document.createElement('a');
+        a.href = audio.src;
+        a.download = 'Naga-Codex-Body-and-Mind.mp3';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      });
+    </script>
+  </body>
+</html>

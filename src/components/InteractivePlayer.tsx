@@ -64,8 +64,8 @@ const toggleMute = () => {
     };
 
   const handleCopyLink = () => {
-    const mp3Url = `${window.location.origin}/assets/body%20and%20mind%20single%20mix.mp3`;
-    navigator.clipboard.writeText(mp3Url).then(() => {
+    const shareUrl = `${window.location.origin}/share.html`;
+    navigator.clipboard.writeText(shareUrl).then(() => {
       setLinkCopied(true);
       setTimeout(() => setLinkCopied(false), 2000);
     });
