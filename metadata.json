@@ -1,0 +1,6 @@
+{
+  "name": "Sonic Micro-Ads",
+  "description": "Short musical ads that make your brand stick when people are ready to buy. 5–10s catchy jingles and animations for high-intent moments by Naga Codex.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
